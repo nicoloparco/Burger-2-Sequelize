@@ -3,23 +3,32 @@ var db = require("../models")
 module.exports = function(app) {
 
     app.get("/api/burgers", function(req, res) {
-        db.Burger.findAll({}).then(function(dbBurgers) {
-            res.json(dbBurgers)
-        })
+       var query = {};
+       if(req.query.author_id) {
+           query.AuthorId = req.query.author_id
+       }
+
+       db.Burger.findAll({
+           where: query,
+           include: [db.Customer]
+       }).then(function(dbBurger) {
+           res.json(dbBurger)
+       });
     });
 
     app.get("/api/burgers/:id", function(req, res) {
         db.Burger.findOne({
             where: {
                 id: req.params.id
-            }
+            },
+            include: [db.Customer]
         }).then(function(dbBurger) {
             res.json(dbBurger)
         });
     });
 
     app.post("/api/burgers", function(req, res) {
-        db.Burger.create(res.body).then(function(dbBurger) {
+        db.Burger.create(req.body).then(function(dbBurger) {
             res.json(dbBurger)
         });
     });
