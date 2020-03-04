@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "build:css": "postcss public/css/index.css -o public/css/tailwind.css"
   },
   "repository": {
     "type": "git",
@@ -17,12 +18,15 @@
   },
   "homepage": "https://github.com/nicoloparco/Burger-Sequelize-App#readme",
   "dependencies": {
+    "autoprefixer": "^9.7.4",
     "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "mysql": "^2.17.1",
     "mysql2": "^2.1.0",
-    "sequelize": "^5.21.5"
+    "postcss-cli": "^7.1.0",
+    "sequelize": "^5.21.5",
+    "tailwindcss": "^1.2.0"
   },
   "devDependencies": {
     "sequelize-cli": "^5.5.1"
