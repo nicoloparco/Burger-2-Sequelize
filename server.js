@@ -1,24 +1,18 @@
-const express = require("express")
-const exphbs = require("express-handlebars")
-const bodyParser = require("body-parser")
+const express = require("express");
+const app = express();
+const PORT = process.env.PORT || 8080;
+const db = require("./models");
 
-const app = express()
-const PORT = process.env.PORT || 3000
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+app.use(express.static.apply("public"));
 
-app.use(express.static(__dirname + "/public"));
+require("./routes/burger-api-routes.js")(app);
+require("./routes/customer-api-routes.js")(app);
+require("./routes/html-routes.js")(app);
 
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-
-app.engine("handlebars", exphbs({defaultLayout: "main"}));
-app.set("view engine", "handlebars");
-
-const routes = require("./controllers/burger_controller.js")
-
-app.use(routes)
-
-
-app.listen(PORT, function() {
-    console.log("Server listening on us-cdbr-iron-east-05.cleardb.net/" + PORT)
+db.sequelize.sync({ force: true}).then(function() {
+    app.listen(PORT, function() {
+        console.log("App Listening on Port: " + PORT);
+    });
 });
-
