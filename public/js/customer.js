@@ -3,29 +3,27 @@ $(document).ready(function() {
     var customerList = $("#customerList");
     var customerContainer = $(".customerContainer")
     
-    $(document).on("submit", "customerForm", handleFormSubmit)
-    $(document).on("click", "deleteCustomer", handleDeleteButtonPress)
+
+    $(document).on("click", "deleteCustomer", handleDeleteButtonPress);
 
     getCustomers();
 
-    function handleFormSubmit(event){
+    
+    $(document).ready(function() {
+        $("#submitButton").click(function(event) {
         event.preventDefault();
-        
-        if(!customerName.val().trim()){
-            return;
-        } else {
-            addCustomer({
+        $.ajax({
+            type: "POST",
+            url: "/api/customers",
+            data: {
                 name: customerName.val().trim()
-            });
-        }
-    }
-
-    function addCustomer(customer) {
-        $.post("/api/customers", customer).then(getCustomers)
-    }
+            }
+        }).then(getCustomers)
+    });
+})
 
     function createCustomerRow(customer) {
-        var newTr = $("<tr");
+        var newTr = $("<tr>");
         newTr.data("customer", customer);
         newTr.append("<td>" + customer.name + "</td>");
         if(customer.Burgers) {
@@ -33,25 +31,24 @@ $(document).ready(function() {
         } else {
             newTr.append("<td>0</td>")
         }
-        newTr.append("<td><a class='delete-author'>Delete Author</a.</td>")
+        newTr.append("<td><a class='delete-author'>Delete Author</a></td>")
     }
 
     function getCustomers() {
-        $.get("api/customers", function(data) {
+        $.get("/api/customers", function(data) {
             var rowsToAdd = [];
             for(var i = 0; i < data.length; i++) {
                 rowsToAdd.push(createCustomerRow(data[i]));
             }
             renderCustomerList(rowsToAdd);
             customerName.val("")
+            console.log(data)
         })
     }
 
-    function renderCustomerList() {
-        customerList.children().not(":last").remove();
-        customerContainer.children(".alert").remove()
+    function renderCustomerList(rows) {
         if(rows.length) {
-            customerList.prepend(rows)
+            customerList.append(rows)
         } else {
             renderEmpty();
         }
@@ -61,7 +58,7 @@ $(document).ready(function() {
         var alertDiv = $("<div>");
         alertDiv.addClass("alert");
         alertDiv.text("Customer must enter name before accessing Burgers.");
-        authorContainer.append(alertDiv);
+        customerContainer.append(alertDiv);
     }
 
     function handleDeleteButtonPress() {
