@@ -3,7 +3,6 @@ $(document).ready(function() {
     var customerList = $("#customerList");
     var customerContainer = $(".customerContainer")
     
-
     $(document).on("click", "deleteCustomer", handleDeleteButtonPress);
 
     getCustomers();
@@ -22,27 +21,36 @@ $(document).ready(function() {
     });
 })
 
-    function createCustomerRow(customer) {
-        var newTr = $("<tr>");
-        newTr.data("customer", customer);
-        newTr.append("<td>" + customer.name + "</td>");
-        if(customer.Burgers) {
-            newTr.append("<td>" + customer.Burgers.length + "</td>")
-        } else {
-            newTr.append("<td>0</td>")
-        }
-        newTr.append("<td><a class='delete-author'>Delete Author</a></td>")
-    }
-
     function getCustomers() {
         $.get("/api/customers", function(data) {
             var rowsToAdd = [];
             for(var i = 0; i < data.length; i++) {
-                rowsToAdd.push(createCustomerRow(data[i]));
+                
+                var name = data[i].name;
+                var burgers = data[i].Burgers
+                var createdAt = new Date(data[i].createdAt)
+
+                var customerRow = $("<div>")
+                customerRow.append(
+                    `<div class='row text-white inline'>
+                    <div class="col-md-3 my-2 mx-2">
+                        ${name}
+                    </div>
+                    <div class="col-md-3 my-2 mx-2 burgers">
+                        Burgers: ${burgers}
+                    </div>
+                    <hr>
+                    <div class="col-md-3 my-2 mx-2">
+                        Customer Since: ${createdAt}
+                    </div>
+                    </div>`
+                )
+                customerRow.prepend($("<hr>"))
+                rowsToAdd.push(customerRow)
+                
             }
             renderCustomerList(rowsToAdd);
             customerName.val("")
-            console.log(data)
         })
     }
 

@@ -12,7 +12,7 @@
     <title>Burger 2</title>
 </head>
 <body class="bg-gray-300">
-    <div class="container bg-green-500 w-3/4 mx-auto mt-4 rounded-lg text-white">
+    <div class="bg-green-500 w-3/4 mx-auto mt-4 rounded-lg text-white">
         <header class="rounded-lg text-center py-2 mb-4">
             <h1 class="text-lg">Burger Shop</h1>
             <h5 class="text-xs italic">The Sequel to SQL</h5>
@@ -24,33 +24,19 @@
         </div>
     </div>
 
-    <div class="container bg-red-500 w-3/4 mx-auto mt-4 rounded-lg text-white customerContainer">
+    <div class="bg-red-500 w-3/4 mx-auto mt-4 rounded-lg text-white customerContainer shadow-2xl">
         <h5 class="text-lg text-center py-2 mb-4">Customer Section</h5>
         <p class="text-sm mx-2 mb-2">If you are a new customer please enter your name below</p>
         
-        <div class="container px-2">
-            <h5>Current Customer List</h5>
-            <table class="table">
-                <thead>
-                    <tr class="text-xs text-white">
-                        <th>Customer Name</th>
-                        <th>Number of Burgers</th>
-                        <th>Delete Customer</th>
-                    </tr>
-                    </thead>
-                    <tbody id="customerList">
-                        <tr id="form-row">
-                            <form id="customerForm">
-                                <td colspan="3">
-                                    <input type="text" placeholder="Enter Your Name" id="customerName" class="rounded mb-2 text-red-500" type="text">
-                                </td>
-                                <td>
-                                    <button class="rounded-lg bg-white text-red-500 border border-red-500 px-2" type="submit" id="submitButton">Submit</button>
-                                </td>
-                            </form>
-                        </tr>
-                    </tbody>
-            </table>
+        <div class="px-2">
+                <div id="customerList">
+                        <form id="customerForm">
+                            <input type="text" placeholder="Enter Your Name" id="customerName" class="rounded mb-2 text-red-500%" type="text">
+                            <button class="rounded-lg bg-white text-red-500 border border-red-500 px-2" type="submit" id="submitButton">Submit</button>
+                            <h5 class="font-semibold mb-4 mt-2">Current Customer List</h5>
+                        </form>
+                    
+                </div>
         </div>
     </div>
 
