@@ -31,36 +31,24 @@ $(function() {
             console.log("Burger Devoured");
             location.reload();
         });
-    
-    
-        var customerId = $("#cust")+id
-        var newCustomer = {
-            name: $(customerId).val().trim(),
-            BurgerId: id
-        }
-    
-        $.ajax("/api/customers", {
+
+        var customerName = $("#customerName").val().trim();
+        var burgerName = $(this).data("name")
+        $.ajax("/api/customers/" + id, {
             type: "POST",
-            data: newCustomer
+            data: {
+                name: customerName,
+                BurgerId: id,
+                Burger: burgerName
+            }
         }).then(function() {
+            console.log(this);
             location.reload();
-        })
+        });
     
     
     });
 
-    // var customerId = $("#cust")+id
-    // var newCustomer = {
-    //     name: $(customerId).val().trim(),
-    //     BurgerId: id
-    // }
-
-    // $.ajax("/api/customers", {
-    //     type: "POST",
-    //     data: newCustomer
-    // }).then(function() {
-    //     location.reload();
-    // })
 
     $(".trashburger").on("click", function(event){
         event.preventDefault();
