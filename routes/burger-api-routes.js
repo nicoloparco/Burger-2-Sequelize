@@ -10,7 +10,7 @@ module.exports = function(app) {
 
        db.Burger.findAll({
            where: query,
-           include: [db.Customer]
+        //    include: [db.Customer]
        }).then(function(dbBurger) {
            res.json(dbBurger)
        });
@@ -21,7 +21,7 @@ module.exports = function(app) {
             where: {
                 id: req.params.id
             },
-            include: [db.Customer]
+            // include: [db.Customer]
         }).then(function(dbBurger) {
             res.json(dbBurger)
         });
@@ -33,7 +33,7 @@ module.exports = function(app) {
         });
     });
 
-    app.delete("api/burgers/:id", function(req, res) {
+    app.delete("/api/burgers/:id", function(req, res) {
         db.Burger.destroy({
             where: {
                 id: req.params.id
@@ -43,13 +43,13 @@ module.exports = function(app) {
         });
     });
 
-    app.put("/api/burgers", function(req, res) {
+    app.put("/api/burgers/:id", function(req, res) {
         db.Burger.update(
             {
             devoured: true
          }, {
             where: {
-                id: req.body.id
+                id: req.params.id
                 }
          }).then(function(dbBurger) {
                 res.json(dbBurger)
