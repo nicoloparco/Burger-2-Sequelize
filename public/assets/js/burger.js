@@ -7,7 +7,7 @@ $(function() {
             devoured: 0
         }
 
-        $.ajax("api/burgers/", {
+        $.ajax("/api/burgers/", {
             type: "POST",
             data: newBurger
         }).then(function() {
@@ -40,7 +40,7 @@ $(function() {
 
         $.ajax({
             type: "DELETE",
-            url: "api/burgers/" + id
+            url: "/api/burgers/" + id
         }).then(function() {
             console.log("Burger Deleted");
             location.reload();
