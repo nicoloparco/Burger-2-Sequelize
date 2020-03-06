@@ -25,7 +25,7 @@
             <form class="create-form">
                 <input id="newburger" class="rounded text-green-500 px-2 placeholder-green-500" placeholder="Burger Name">
                 {{!-- <input id="newCustomer"> --}}
-                <button type="submit" class="mx-2 border-2 border-white rounded px-1 bg-white text-green-500" id="addburger">Submit</button> 
+                <button type="submit" class="mx-2 border-2 border-white rounded px-2 bg-white text-green-500" id="addburger">Submit</button> 
             </form>
         </div>
 
@@ -39,8 +39,7 @@
                                 {{#unless devoured}}
                                     <div class="my-4">
                                         <span >{{this.name}}</span>
-                                        <input class="ml-2 rounded text-green px-2 placeholder-green-500 border border-green-500" placeholder="Enter Customer Name" id="customerName">
-                                        <button class="btn btn-outline-success eatburger ml-2" id="eatbutton" data-id="{{this.id}}" data-newDevoured="{{devour}}" data-name="{{this.name}}">Devour</button>
+                                        <button class="mx-2 border-2 border-white rounded-lg px-2 py-1 bg-green-500 text-white eatburger" id="eatbutton" data-id="{{this.id}}" data-newDevoured="{{devour}}" data-name="{{this.name}}">Devour</button>
                                     </div>
                                     <hr>
                                 {{/unless}}
@@ -58,8 +57,7 @@
                                 {{#if devoured}}
                                     <div class="my-4">
                                             <span>{{this.name}}</span>
-                                            <span class="ml-2">Devoured By: {{this.Customer.name}}</span>
-                                            <button class="btn btn-outline-success trashburger ml-2" id="trashbutton" data-id="{{this.id}}" data-newDevoured="{{devour}}">All Done!</button>
+                                            <button class="mx-2 border-2 border-white rounded-lg px-1 bg-green-500 text-white trashburger ml-2" id="trashbutton" data-id="{{this.id}}" data-newDevoured="{{devour}}">All Done!</button>
                                     </div>
                                     <hr>
                                 {{/if}}
