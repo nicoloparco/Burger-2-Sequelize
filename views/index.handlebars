@@ -39,7 +39,10 @@
                                 {{#unless devoured}}
                                     <div class="my-4">
                                         <span >{{this.name}}</span>
+                                        <form action="/{{this.id}}?_method=PUT" method="POST">
+                                        <input class=" ml-2 rounded text-green px-2 placeholder-green-500 border border-green-500" placeholder="Enter Customer Name" id="cust{{id}}">
                                         <button class="btn btn-outline-success eatburger ml-2" id="eatbutton" data-id="{{this.id}}" data-newDevoured="{{devour}}">Devour</button>
+                                        </form>
                                     </div>
                                     <hr>
                                 {{/unless}}
@@ -58,6 +61,7 @@
                                     <div class="my-4">
                                         <span>{{this.name}}</span>
                                         <button class="btn btn-outline-success trashburger ml-2" id="trashbutton" data-id="{{this.id}}" data-newDevoured="{{devour}}">All Done!</button>
+                                        <span class="ml-2">Devoured By: {{this.Customer.name}}</span>
                                     </div>
                                     <hr>
                                 {{/if}}

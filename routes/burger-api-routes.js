@@ -10,7 +10,7 @@ module.exports = function(app) {
 
        db.Burger.findAll({
            where: query,
-        //    include: [db.Customer]
+           include: [db.Customer]
        }).then(function(dbBurger) {
            res.json(dbBurger)
        });
@@ -21,7 +21,7 @@ module.exports = function(app) {
             where: {
                 id: req.params.id
             },
-            // include: [db.Customer]
+            include: [db.Customer]
         }).then(function(dbBurger) {
             res.json(dbBurger)
         });
@@ -46,7 +46,8 @@ module.exports = function(app) {
     app.put("/api/burgers/:id", function(req, res) {
         db.Burger.update(
             {
-            devoured: true
+            devoured: true,
+            Customer: "name"
          }, {
             where: {
                 id: req.params.id

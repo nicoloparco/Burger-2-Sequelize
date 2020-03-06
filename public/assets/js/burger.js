@@ -4,7 +4,7 @@ $(function() {
 
         var newBurger = {
             name : $("#newburger").val().trim(), 
-            devoured: 0
+            devoured: 0,
         }
 
         $.ajax("/api/burgers/", {
@@ -20,18 +20,47 @@ $(function() {
         event.preventDefault();
 
         var id = $(this).data("id");
-        var devour = {
+        var devouredState = {
             devoured: 1
-        };
+        }
         
         $.ajax("/api/burgers/" + id, {
             type: "PUT",
-            data: devour
+            data: devouredState
         }).then(function() {
             console.log("Burger Devoured");
             location.reload();
         });
+    
+    
+        var customerId = $("#cust")+id
+        var newCustomer = {
+            name: $(customerId).val().trim(),
+            BurgerId: id
+        }
+    
+        $.ajax("/api/customers", {
+            type: "POST",
+            data: newCustomer
+        }).then(function() {
+            location.reload();
+        })
+    
+    
     });
+
+    // var customerId = $("#cust")+id
+    // var newCustomer = {
+    //     name: $(customerId).val().trim(),
+    //     BurgerId: id
+    // }
+
+    // $.ajax("/api/customers", {
+    //     type: "POST",
+    //     data: newCustomer
+    // }).then(function() {
+    //     location.reload();
+    // })
 
     $(".trashburger").on("click", function(event){
         event.preventDefault();
