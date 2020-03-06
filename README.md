@@ -1,6 +1,7 @@
-Burger MySQL App
+Burger Sequelize App
 
-This app is powered by express, node, mySQL, javascript, handlebars, and HTML
+This app is powered by express, node, mySQL, sequelize, javascript, handlebars, and HTML
+This app is the sequel to the first burger app and is comnepletely refactored using sequelize's orm models 
 When the app is loaded the user is presented with a few burgers that exist in the database. 
 The user can "eat" the burgers by clicking the devour button.
 This changes their data and places them into the devoured column.
