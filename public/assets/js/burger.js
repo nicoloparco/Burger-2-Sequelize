@@ -31,22 +31,6 @@ $(function() {
             console.log("Burger Devoured");
             location.reload();
         });
-
-        var customerName = $("#customerName").val().trim();
-        var burgerName = $(this).data("name")
-        $.ajax("/api/customers/" + id, {
-            type: "POST",
-            data: {
-                name: customerName,
-                BurgerId: id,
-                Burger: burgerName
-            }
-        }).then(function() {
-            console.log(this);
-            location.reload();
-        });
-    
-    
     });
 
 

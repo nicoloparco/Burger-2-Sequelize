@@ -19,13 +19,6 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
 
-    Burger.associate = function(models) {
-        Burger.hasMany(models.Customer, {
-            onDelete: "cascade",
-            foreignKey: "id"
-        })
-    };
-
 
     return Burger;
 };
